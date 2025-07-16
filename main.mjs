@@ -11,9 +11,9 @@
 // console.log('ESMODULE type2 add : ', res2)
 
 
-import  math from './math.mjs'
-const {add,sub}=math
-let res3= add(100,200)
+// import  math from './math.mjs'
+// const {add,sub}=math
+// let res3= add(100,200)
 // console.log('ESMODULE type 3 add :', res3)
 
 
