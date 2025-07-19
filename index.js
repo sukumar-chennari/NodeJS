@@ -1,47 +1,26 @@
-// const EventEmitter= require('events');
-// const { emit } = require('process');
+const fs=require('node:fs')
 
-// const emitter= new EventEmitter();
+// read file 
+const fileContent=fs.readFileSync('./file.txt','utf-8')
+console.log(fileContent)
 
-// emitter.on('order-pizza', (size, topping) => {
-//     console.log(`Order received: ${size} pizza with ${topping}`);
-// });
+fs.readFile('./file.txt','utf-8',(err,data)=>{
+    if(err) console.log(err)
+        else console.log(data)
+})
 
-// emitter.emit('order-pizza','large', 'pepperoni');
+// write file 
+fs.writeFileSync('./gree.txt','HEllo World ')
 
-//---------------------------------------------------------------------------------
-
-// const pizaShop = require('./pizzaShop');
-// const pizzaShop = new pizaShop();
-// pizzaShop.orderPizza();
-// pizzaShop.displayOrders();
-
-// pizzaShop.orderPizza();
-// pizzaShop.displayOrders();
-
-
-const PizzaShop = require('./pizzaShop');
-const DrinkShop = require('./drinkShop');
-
-// Create instances of PizzaShop and DrinkShop
-const drinkShop = new DrinkShop();
-const pizzaShop = new PizzaShop();
-
-pizzaShop.on('order-pizza', (size, topping) => {
-    if(size === 'small') {
-        drinkShop.drinkSize('small');
-    } else if(size === 'medium') {
-        drinkShop.drinkSize('medium');
-    } else if(size === 'large') {
-        drinkShop.drinkSize('large');
-    } else {
-        console.log('Invalid size');
+fs.writeFile('./green.txt','changed bro',(err)=>{
+    if(err){
+        console.log(err)
     }
-    console.log(`Order received: ${size} pizza with ${topping}`);
+        console.log('Data written')
+})
+
+fs.stat('file.txt', (err, stats) => {
+  if (err) throw err;
+  console.log(stats);     // true
+  console.log(stats.size);         // bytes
 });
-
-pizzaShop.orderPizza();
-pizzaShop.displayOrders('large', 'pepperoni');
-
-pizzaShop.orderPizza();
-pizzaShop.displayOrders( 'small', 'mushrooms');
